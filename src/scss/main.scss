@@ -273,10 +273,6 @@ a.tooltip:hover span {
 
             }
 
-            
-
-            
-
             @media (min-width: 320px) and (max-width: 425px) {
                 width: 75px;
 		        height: 75px;
@@ -298,6 +294,7 @@ a.tooltip:hover span {
     width: 50%;
     margin-top: 30px;
     margin-left: auto;
+    z-index: 10;
 
     &__links {
         display: block;
@@ -310,7 +307,6 @@ a.tooltip:hover span {
 
         .bond {
             background-color: #f5f5f5;
-            margin-bottom: 45px;
             border-radius: 10px;
             padding: 15px 25px;
             box-shadow: 8px 8px 16px #d0d0d0, 
@@ -355,15 +351,6 @@ a.tooltip:hover span {
                     @media (min-width: 320px) and (max-width: 425px) {
                         font-size: 16px;
                     }
-                }
-            }
-
-            &-profit {
-
-                &_value {
-                    font-size: 2.5rem;
-                    font-weight: 700;
-                    padding-right: 10px;
                 }
             }
 
@@ -436,10 +423,82 @@ a.tooltip:hover span {
         margin-left: 0;
     }
 
-
-
 }// bonds
+.stockbroker-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 15px 25px;
+    margin-bottom: 45px;
+    background: #F4F4F4;
+    box-shadow: 8px 8px 16px #CBCBCB, -8px -8px 16px #FFFFFF;
+    border-radius: 0 0 10px 10px;
+    z-index: 0;
+    opacity: 0;
+    margin-top: -110px;
+    transition: .5s;
 
+    &_label {
+        align-self: center;
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 14px;
+        padding-right: 10px;
+        width: 130px;
+    }
+
+    &_price {
+        padding-right: 10px;
+
+        &-header {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #949191;
+
+            @media (min-width: 320px) and (max-width: 425px) {
+                font-size: 10px;
+                }
+        }
+
+        &-input {
+            width: 124px;
+            height: 32px;
+            margin-top: 7px;
+            background: #ffffff;
+            border: 1px solid #949191;
+            box-sizing: border-box;
+            box-shadow: -8px -8px 16px 0px #FFFFFF,
+                    8px 8px 16px 0px #CBCBCB;
+            border-radius: 5px;
+            padding-left: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 19px;
+
+            &-label {
+                padding-left: 4px;
+                font-weight: bold;
+                font-size: 16px;
+                line-height: 19px;
+                color: #919191;
+            }
+        }
+    }
+
+    &_profit {
+
+        &-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            padding-right: 10px;
+            line-height: 40px;
+
+            @media (min-width: 320px) and (max-width: 425px) {
+                font-size: 16px;
+            }
+        }
+    }
+}
 
 // == Popup ==
 
