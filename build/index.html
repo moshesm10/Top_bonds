@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Сервис подбора доходных и надежных облигаций. Мы рассчитываем реальную доходность облигации со дня покупки до даты её погашения и покажем лучший вариант">
+	<meta name="author" content="">
+	<link rel="icon" href="img/favicon.ico">
+	<link rel="stylesheet" href="css/main.css">
+	<title>Выгодные облигации</title>
+</head>
+<body>
+    <div class="container">
+        <section class="description">
+            <h1>Найди выгодную облигацию</h1>
+            <p class="description__subtitle">Мы рассчитываем реальную доходность облигации со дня покупки до даты её погашения и покажем лучший вариант  <span class="add">подробнее про расчеты</span></p>
+            <div class="description__year-selector">
+                <p class="description__year-selector-title">Год погашения облигации</p>
+                <div class="description__year-selector-button-wrapper">
+                    <button class="description__year-selector-button-wrapper_decrement-year">
+                        <img src="./img/minus_icon.svg" alt="minus year button">    
+                    </button>
+                    <p>до </p>
+                    <span class="description__year-selector-button-wrapper_year-counter">2024</span>
+                    <button class="description__year-selector-button-wrapper_increment-year">
+                        <img src="./img/plus_icon.svg" alt="plus year button">    
+                    </button>
+                </div>
+            </div>
+            <p class="description__risk-title">Уровень риска<a class="tooltip"><img src="./img/info_icon.svg" alt="info_icon"><span>Мы учитываем количество сделок за 30 дней, дюрацию и уровень листинга</span></a></p>
+            <div class="description__risk-selector">	
+                <div class ="description__risk-selector-button">
+                    <input type="radio" id="radio1" name="risk-button" value="1">
+                        <label class="description__risk-selector-button_label" for="radio1">Низкий</label>
+                    </input>
+                </div>
+                <div class ="description__risk-selector-button">
+                    <input type="radio" id="radio2" name="risk-button" value="2" checked>
+                        <label class="description__risk-selector-button_label" for="radio2">Средний</label>
+                    </input>
+                </div>
+                <div class ="description__risk-selector-button">
+                    <input type="radio" id="radio3" name="risk-button" value="3">
+                        <label class="description__risk-selector-button_label" for="radio3">Высокий</label>
+                    </input>
+                </div>
+            </div>
+        </section>
+        <section class="bonds">
+            <span class="bonds__links">Designed and developed by <a href="https://www.behance.net/moshesm" target="_blank" style="cursor: pointer;">Moshesm</a><a style="margin-left: 10px;" href="mailto:moshesm@yandex.ru" target="_blank" style="cursor: pointer;">moshesm@yandex.ru</a></span>
+            <div class="bonds__block">
+                <!-- bonds place -->
+                
+            </div>
+        </section>
+    </div><!-- /.container -->
+    <div class="popup">
+        <div class="popup__content">
+            <button class="popup__content-close-button"></button>
+            <h2 class="popup__content-title">Как мы считаем доходность</h2>
+            <p>Многие держат облигации до даты их погашения, когда вместе с последним купоном инвестор получает номинал. Мы рассчитываем <b>простую доходность к погашению</b> тех облигаций, у которых известен размер всех купонов:</p>
+            <p class="popup__content-formula">((Номинал − Цена покупки облигации + (Сумма всех купонов за период владения - НКД)) / Цена покупки облигации) × (365 / Количество дней до погашения) × 100%</p>
+            <h2 class="popup__content-title">Как мы определяем уровень риска</h2>
+            <p>Не все облигации являются надежными. Мы проверяем ликвидность облигации, среднее время окупаемости инвестиций и уровень доверия Мосбиржи к эмитенту.</p>
+        </div>
+    </div>
+    <script src="./js/main.js"></script>
+</body>
+</html>
