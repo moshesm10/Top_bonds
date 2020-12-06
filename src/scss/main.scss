@@ -147,6 +147,10 @@ a.tooltip:hover span {
 	box-shadow: inset 5px 5px 10px #d0d0d0, inset -5px -5px 10px #ffffff;
 }
 
+.active-block {
+    display: flex;
+}
+
 // == Description block ==
 
 .description {
@@ -308,6 +312,7 @@ a.tooltip:hover span {
         .bond {
             background-color: #f5f5f5;
             border-radius: 10px;
+            margin-bottom: 40px;
             padding: 15px 25px;
             box-shadow: 8px 8px 16px #d0d0d0, 
             -8px -8px 16px #fdfdfd;
@@ -316,6 +321,7 @@ a.tooltip:hover span {
             animation: show 1s 1;
             animation-fill-mode: forwards;
             animation-delay: 0s;
+            overflow: hidden;
         }
 
         .bond &-bond {
@@ -428,14 +434,10 @@ a.tooltip:hover span {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    padding: 15px 25px;
-    margin-bottom: 45px;
-    background: #F4F4F4;
-    box-shadow: 8px 8px 16px #CBCBCB, -8px -8px 16px #FFFFFF;
     border-radius: 0 0 10px 10px;
-    z-index: 0;
-    opacity: 0;
-    margin-top: -110px;
+    padding-top: 15px;
+    margin-top: 15px;
+    border-top: 1px solid #DEDEDE;
     transition: .5s;
 
     &_label {

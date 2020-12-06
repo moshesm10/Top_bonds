@@ -111,6 +111,9 @@ a.tooltip:hover span {
   background-color: #E5E5E5;
   box-shadow: inset 5px 5px 10px #d0d0d0, inset -5px -5px 10px #ffffff; }
 
+.active-block {
+  display: flex; }
+
 .description {
   position: fixed;
   margin-top: 30px;
@@ -210,6 +213,7 @@ a.tooltip:hover span {
   .bonds__block .bond {
     background-color: #f5f5f5;
     border-radius: 10px;
+    margin-bottom: 40px;
     padding: 15px 25px;
     box-shadow: 8px 8px 16px #d0d0d0,  -8px -8px 16px #fdfdfd;
     opacity: 0;
@@ -219,7 +223,8 @@ a.tooltip:hover span {
     -webkit-animation-fill-mode: forwards;
     animation-fill-mode: forwards;
     -webkit-animation-delay: 0s;
-    animation-delay: 0s; }
+    animation-delay: 0s;
+    overflow: hidden; }
   .bond .bonds__block-bond-data, .bond .bonds__block-bond-extra-data {
     display: flex;
     align-items: center; }
@@ -289,14 +294,10 @@ a.tooltip:hover span {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  padding: 15px 25px;
-  margin-bottom: 45px;
-  background: #F4F4F4;
-  box-shadow: 8px 8px 16px #CBCBCB, -8px -8px 16px #FFFFFF;
   border-radius: 0 0 10px 10px;
-  z-index: 0;
-  opacity: 0;
-  margin-top: -110px;
+  padding-top: 15px;
+  margin-top: 15px;
+  border-top: 1px solid #DEDEDE;
   transition: .5s; }
   .stockbroker-price_label {
     align-self: center;

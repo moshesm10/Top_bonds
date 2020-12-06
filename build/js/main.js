@@ -134,13 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                     </div> 
-                    `;
-
-                    bondsWrapper.append(bond);
-
-                    const bondStockbrockerPrice = document.createElement('div');
-                    bondStockbrockerPrice.classList.add('stockbroker-price');
-                    bondStockbrockerPrice.innerHTML = `
+                    <div class="stockbroker-price">
                         <span class="stockbroker-price_label">Доходность к погашению у вашего брокера</span>
                         <div class="stockbroker-price_price">
                             <p class="stockbroker-price_price-header">Введите цену облигации</p>
@@ -152,25 +146,31 @@ document.addEventListener('DOMContentLoaded', () => {
                             <p class="stockbroker-price_price-header">Доходность к погашению</p>
                             <p class="stockbroker-price_profit-value">150 %</p>
                         </div>
+                    </div>
                     `;
-                    bondsWrapper.append(bondStockbrockerPrice);
+
+                    bondsWrapper.append(bond);
             }
 
-            /*
+            
             // анимация при наведении мыши
             const bonds = document.querySelectorAll('.bond');
 
             bonds.forEach(item => {
+                item.style.height = `${item.clientHeight - item.lastElementChild.clientHeight - 47}px`;
                 item.addEventListener('mouseenter', (e) => {
-                    e.target.nextElementSibling.style.marginTop = '0';
-                    e.target.nextElementSibling.style.opacity = '1';
+                    if (e.target.classList.contains('bond')) {
+                        e.target.style.height = ``;
+                    }
                 });
+                
                 item.addEventListener('mouseleave', (e) => {
-                    e.target.nextElementSibling.style.marginTop = '';
-                    e.target.nextElementSibling.style.opacity = '0';
+                    const currentItem = e.target;
+                    currentItem.style.height = `${currentItem.clientHeight - currentItem.lastElementChild.clientHeight - 47}px`
                 });
+                
             });
-            */
+            
            
         });
     };
@@ -192,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // btns risk selector
 
-    document.addEventListener('DOMContentLoaded', getData(2));
+    //document.addEventListener('DOMContentLoaded', getData(2));
 
     let switchCaseNum = 2;
 
