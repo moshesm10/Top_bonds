@@ -400,7 +400,7 @@ a.tooltip:hover span {
       box-shadow: 5px 5px 10px #d0d0d0,  -5px -5px 10px #ffffff; }
     @media (min-width: 320px) and (max-width: 425px) {
       .popup__content {
-        min-width: 90%; } }
+        min-width: 80%; } }
     .popup__content-title {
       margin: 25px 0; }
     .popup__content-formula {
