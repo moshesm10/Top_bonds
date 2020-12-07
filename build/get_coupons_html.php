@@ -23,7 +23,7 @@ for ($i=0; $i < $counter_bonds; $i++) {
 
   echo $i, " row<br>"; 
 
-  if ($shortname!='' && $matdate!='' && $lotvalue <= 10000 && $duration <= 1000 && $listlevel!='' &&  $accruedint != '' && $prevwaprice != '') {
+  if ($shortname!='' && $matdate!='' && $lotvalue <= 10000 && $duration <= 1000 && $listlevel!='' &&  $accruedint != '' && $prevwaprice != '' && $duration != 0 && $prevwaprice > 95) {
     
 
 		echo $i."  ";

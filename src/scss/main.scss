@@ -108,6 +108,14 @@ a.text {
     color: #b0b0b0;
 }
 
+.wrapper-bond {
+    margin-bottom: 45px;
+    opacity: 0;
+    transition: 0.5s;
+    animation: show 1s 1;
+    animation-fill-mode: forwards;
+}
+
 // == tooltip == 
 
 .tooltip img {
@@ -143,12 +151,8 @@ a.tooltip:hover span {
 // == State ==
 
 .disable {
-	background-color: #E5E5E5;
+	background: #E5E5E5;
 	box-shadow: inset 5px 5px 10px #d0d0d0, inset -5px -5px 10px #ffffff;
-}
-
-.active-block {
-    display: flex;
 }
 
 // == Description block ==
@@ -298,7 +302,6 @@ a.tooltip:hover span {
     width: 50%;
     margin-top: 30px;
     margin-left: auto;
-    z-index: 10;
 
     &__links {
         display: block;
@@ -310,18 +313,12 @@ a.tooltip:hover span {
     &__block {
 
         .bond {
+            position: relative;
             background-color: #f5f5f5;
             border-radius: 10px;
-            margin-bottom: 40px;
             padding: 15px 25px;
             box-shadow: 8px 8px 16px #d0d0d0, 
             -8px -8px 16px #fdfdfd;
-            opacity: 0;
-            transition: 0.5s;
-            animation: show 1s 1;
-            animation-fill-mode: forwards;
-            animation-delay: 0s;
-            overflow: hidden;
         }
 
         .bond &-bond {
@@ -435,10 +432,10 @@ a.tooltip:hover span {
     justify-content: space-between;
     align-items: baseline;
     border-radius: 0 0 10px 10px;
-    padding-top: 15px;
-    margin-top: 15px;
-    border-top: 1px solid #DEDEDE;
-    transition: .5s;
+    padding: 15px 25px;
+    background-color: #f7f7f7;
+    box-shadow: 8px 8px 16px #d0d0d0, 
+            -8px -8px 16px #fdfdfd;
 
     &_label {
         align-self: center;

@@ -80,6 +80,15 @@ a.text {
   text-decoration: none;
   color: #b0b0b0; }
 
+.wrapper-bond {
+  margin-bottom: 45px;
+  opacity: 0;
+  transition: 0.5s;
+  -webkit-animation: show 1s 1;
+  animation: show 1s 1;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards; }
+
 .tooltip img {
   width: 21px;
   position: relative;
@@ -108,11 +117,8 @@ a.tooltip:hover span {
   color: #FFFFFF; }
 
 .disable {
-  background-color: #E5E5E5;
+  background: #E5E5E5;
   box-shadow: inset 5px 5px 10px #d0d0d0, inset -5px -5px 10px #ffffff; }
-
-.active-block {
-  display: flex; }
 
 .description {
   position: fixed;
@@ -203,28 +209,18 @@ a.tooltip:hover span {
 .bonds {
   width: 50%;
   margin-top: 30px;
-  margin-left: auto;
-  z-index: 10; }
+  margin-left: auto; }
   .bonds__links {
     display: block;
     margin-bottom: 30px;
     font-size: 11px;
     color: #c3c3c3; }
   .bonds__block .bond {
+    position: relative;
     background-color: #f5f5f5;
     border-radius: 10px;
-    margin-bottom: 40px;
     padding: 15px 25px;
-    box-shadow: 8px 8px 16px #d0d0d0,  -8px -8px 16px #fdfdfd;
-    opacity: 0;
-    transition: 0.5s;
-    -webkit-animation: show 1s 1;
-    animation: show 1s 1;
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-    -webkit-animation-delay: 0s;
-    animation-delay: 0s;
-    overflow: hidden; }
+    box-shadow: 8px 8px 16px #d0d0d0,  -8px -8px 16px #fdfdfd; }
   .bond .bonds__block-bond-data, .bond .bonds__block-bond-extra-data {
     display: flex;
     align-items: center; }
@@ -295,10 +291,9 @@ a.tooltip:hover span {
   justify-content: space-between;
   align-items: baseline;
   border-radius: 0 0 10px 10px;
-  padding-top: 15px;
-  margin-top: 15px;
-  border-top: 1px solid #DEDEDE;
-  transition: .5s; }
+  padding: 15px 25px;
+  background-color: #f7f7f7;
+  box-shadow: 8px 8px 16px #d0d0d0,  -8px -8px 16px #fdfdfd; }
   .stockbroker-price_label {
     align-self: center;
     font-size: 12px;

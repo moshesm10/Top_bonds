@@ -40,18 +40,18 @@ for ($row = 0; $row < $counter_bonds; $row++) {
 
  echo $row, " row<br>";   
 
-  if ($shortname!='' && $matdate!='' && $lotvalue <= 10000 && $duration <= 1000 && $listlevel!='' &&  $accruedint != '' && $prevwaprice != '') {
+  if ($shortname!='' && $matdate!='' && $lotvalue <= 10000 && $duration <= 1000 && $listlevel!='' &&  $accruedint != '' && $prevwaprice != '' && $duration != 0 && $prevwaprice > 95) {
 
-    
     $sum_volume_trade_value = sum_volume_trade($secid);
     $coupons_sum_value = sum_coupons($html_coupons[$sql]['bond_html']);
     $yield_to_mat_value = yield_to_mat($matdate, $lotvalue, $purchase, $coupons_sum_value, $accruedint);
     $sql += 1;
 
-    $test_list .= ", ('$secid', '".mysqli_real_escape_string($link, $shortname)."', '$matdate', '$lotvalue', '$duration', '$listlevel', '$accruedint', '$prevwaprice', '$coupons_sum_value', '$sum_volume_trade_value', '$yield', '$yield_to_mat_value', '$purchase')";
+    if ($coupons_sum_value > 0 && $sum_volume_trade_value > 0 && $yield > 0 && $yield_to_mat_value > 0) {
 
+      $test_list .= ", ('$secid', '".mysqli_real_escape_string($link, $shortname)."', '$matdate', '$lotvalue', '$duration', '$listlevel', '$accruedint', '$prevwaprice', '$coupons_sum_value', '$sum_volume_trade_value', '$yield', '$yield_to_mat_value', '$purchase')";
+    }
   }
-
 }
 $test_list = stristr($test_list, '(');
 echo $test_list;

@@ -7,8 +7,6 @@ header("Pragma: no-cache"); // HTTP/1.0
 
 include 'connection.php';
 
-//mysqli_query($link, "SET NAMES `utf-8`")
-
 $query = "SELECT * FROM `data`";
 $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
 $rows = array();
