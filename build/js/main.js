@@ -112,15 +112,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <div class="stockbroker-price">
                             <span class="stockbroker-price_label">Доходность к погашению у вашего брокера</span>
-                            <div class="stockbroker-price_price">
-                                <p class="stockbroker-price_price-header">Введите цену облигации</p>
-                                <input type="text" data-lotvalue="${bonds_arr[i][4]}" data-coupons="${bonds_arr[i][8] - bonds_arr[i][9]}" data-delta="${((Date.parse(bonds_arr[i][7]) - new Date()) / (1000 * 3600 * 24))}" class="stockbroker-price_price-input" name="stockbroker-price" oninput="this.nextElementSibling.nextSibling.parentNode.nextElementSibling.lastElementChild.innerText = (((+this.dataset.lotvalue - +this.value + +this.dataset.coupons) / +this.value) * (365 / +this.dataset.delta * 100)).toFixed(1) + ' %'"> 
-                                    <label class="stockbroker-price_price-input-label" for="stockbroker-price">₽</label>
-                                </input>
-                            </div>
-                            <div class="stockbroker-price_profit">
-                                <p class="stockbroker-price_price-header">Доходность к погашению</p>
-                                <p class="stockbroker-price_profit-value">0 %</p>
+                            <div class="stockbroker-price_wrapper">
+                                <div class="stockbroker-price_price">
+                                    <p class="stockbroker-price_price-header">Введите цену облигации</p>
+                                    <input type="text" data-lotvalue="${bonds_arr[i][4]}" data-coupons="${bonds_arr[i][8] - bonds_arr[i][9]}" data-delta="${((Date.parse(bonds_arr[i][7]) - new Date()) / (1000 * 3600 * 24))}" class="stockbroker-price_price-input" name="stockbroker-price" placeholder="0 ₽" oninput="this.parentElement.parentElement.lastElementChild.lastElementChild.innerText = (((+this.dataset.lotvalue - +this.value + +this.dataset.coupons) / +this.value) * (365 / +this.dataset.delta * 100)).toFixed(1) + ' %'"/> 
+                                </div>
+                                <div class="stockbroker-price_profit">
+                                    <p class="stockbroker-price_price-header">Доходность к погашению</p>
+                                    <p class="stockbroker-price_profit-value">0 %</p>
+                                </div>
                             </div>
                         </div>
                     `;

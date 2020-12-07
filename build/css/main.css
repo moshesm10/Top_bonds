@@ -294,6 +294,13 @@ a.tooltip:hover span {
   padding: 15px 25px;
   background-color: #f7f7f7;
   box-shadow: 8px 8px 16px #d0d0d0,  -8px -8px 16px #fdfdfd; }
+  .stockbroker-price_wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 69%; }
+    @media (min-width: 320px) and (max-width: 425px) {
+      .stockbroker-price_wrapper {
+        margin-top: 10px; } }
   .stockbroker-price_label {
     align-self: center;
     font-size: 12px;
@@ -337,6 +344,9 @@ a.tooltip:hover span {
     @media (min-width: 320px) and (max-width: 425px) {
       .stockbroker-price_profit-value {
         font-size: 16px; } }
+  @media (min-width: 320px) and (max-width: 425px) {
+    .stockbroker-price {
+      display: block; } }
 
 .add {
   font-size: 14px;

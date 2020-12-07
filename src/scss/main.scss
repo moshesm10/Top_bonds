@@ -437,6 +437,16 @@ a.tooltip:hover span {
     box-shadow: 8px 8px 16px #d0d0d0, 
             -8px -8px 16px #fdfdfd;
 
+    &_wrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-basis: 69%;
+
+        @media (min-width: 320px) and (max-width: 425px) {
+            margin-top: 10px;
+        }
+    }
+
     &_label {
         align-self: center;
         font-size: 12px;
@@ -496,6 +506,10 @@ a.tooltip:hover span {
                 font-size: 16px;
             }
         }
+    }
+
+    @media (min-width: 320px) and (max-width: 425px) {
+        display: block;
     }
 }
 
