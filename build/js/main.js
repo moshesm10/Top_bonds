@@ -23,43 +23,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 const secId = json[i].SECID,
                       shortName = json[i].SHORTNAME,
                       matDate = json[i].MATDATE,
-                      lotvalue = +json[i].LOTVALUE,
+                      lotValue = +json[i].LOTVALUE,
                       duration = +json[i].DURATION,
-                      listlevel = +json[i].LISTLEVEL,
+                      listLevel = +json[i].LISTLEVEL,
                       accruedint = +json[i].ACCRUEDINT,
-                      coupons_sum_value = +json[i].COUPONS_SUM,
-                      sum_volume_trade_value = +json[i].SUM_VOLUME_TRADE,
+                      couponsSumValue = +json[i].COUPONS_SUM,
+                      sumVolumeTradeValue = +json[i].SUM_VOLUME_TRADE,
                       purchase = +json[i].PURCHASE,
-                      yield_to_mat_value = +json[i].YIELD_TO_MAT;
+                      yieldToMatValue = +json[i].YIELD_TO_MAT;
                 
                 // == sort by selected year ==
                 if (Date.parse(matDate) <= Date.parse(`${yearCurrent.textContent}-12-31`)) {
                     
                     switch (caseNum) {
                         case 1:
-                            if ((listlevel == 1) && (100 <= duration <= 330) && sum_volume_trade_value >= 100) {
-                                bonds_arr.push([shortName, yield_to_mat_value, purchase, secId, lotvalue, sum_volume_trade_value, duration, matDate, coupons_sum_value, accruedint]);
+                            if ((listLevel == 1) && (100 <= duration <= 330) && sumVolumeTradeValue >= 100) {
+                                bonds_arr.push([shortName, yieldToMatValue, purchase, secId, lotValue, sumVolumeTradeValue, duration, matDate, couponsSumValue, accruedint]);
                             }
                             break;
                         case 2:
-                            if ((listlevel <= 2) && (duration <= 660) && sum_volume_trade_value >= 40) {
-                                bonds_arr.push([shortName, yield_to_mat_value, purchase, secId, lotvalue, sum_volume_trade_value, duration, matDate, coupons_sum_value, accruedint]);
+                            if ((listLevel <= 2) && (duration <= 660) && sumVolumeTradeValue >= 40) {
+                                bonds_arr.push([shortName, yieldToMatValue, purchase, secId, lotValue, sumVolumeTradeValue, duration, matDate, couponsSumValue, accruedint]);
                             }
                             break;
                         case 3:
-                            if ((listlevel <= 3) && (duration <= 1000) && (0 <= duration)) {
-                                bonds_arr.push([shortName, yield_to_mat_value, purchase, secId, lotvalue, sum_volume_trade_value, duration, matDate, coupons_sum_value, accruedint]);
+                            if ((listLevel <= 3) && (duration <= 1000) && (0 <= duration)) {
+                                bonds_arr.push([shortName, yieldToMatValue, purchase, secId, lotValue, sumVolumeTradeValue, duration, matDate, couponsSumValue, accruedint]);
                             }
                             break;
                     }
                 }
             }
             
-            // == sort data by yield_to_mat_value ==
+            // == sort data by yieldToMatValue ==
             bonds_arr.sort((a, b) => b[1] - a[1]);
 
+            // == render ==
             if (bonds_arr[0]) {
-                for (let i = 0; i < 20; i++) {
+                let counter = 20;
+                if (bonds_arr.length < 20) {
+                    counter = bonds_arr.length;
+                }
+                for (let i = 0; i < counter; i++) {
                     const bond = document.createElement('div');
                     bond.classList.add('wrapper-bond');
                     bond.innerHTML = `
@@ -115,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="stockbroker-price_wrapper">
                                 <div class="stockbroker-price_price">
                                     <p class="stockbroker-price_price-header">Введите цену облигации</p>
-                                    <input type="text" data-lotvalue="${bonds_arr[i][4]}" data-coupons="${bonds_arr[i][8] - bonds_arr[i][9]}" data-delta="${((Date.parse(bonds_arr[i][7]) - new Date()) / (1000 * 3600 * 24))}" class="stockbroker-price_price-input" name="stockbroker-price" placeholder="0 ₽" oninput="this.parentElement.parentElement.lastElementChild.lastElementChild.innerText = (((+this.dataset.lotvalue - +this.value + +this.dataset.coupons) / +this.value) * (365 / +this.dataset.delta * 100)).toFixed(1) + ' %'"/> 
+                                    <input type="text" data-lotvalue="${bonds_arr[i][4]}" data-coupons="${bonds_arr[i][8] - bonds_arr[i][9]}" data-delta="${((Date.parse(bonds_arr[i][7]) - new Date()) / (1000 * 3600 * 24))}" class="stockbroker-price_price-input" name="stockbroker-price" placeholder="0 ₽"/>
                                 </div>
                                 <div class="stockbroker-price_profit">
                                     <p class="stockbroker-price_price-header">Доходность к погашению</p>
@@ -126,21 +131,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                     bondsWrapper.append(bond);
                 };
-            }
-            // == result render ==
+            };
+            // == /render == 
             
+            // == stockbroker-price input logic==
+            const priceInputs = document.querySelectorAll('.stockbroker-price_price-input');
+            priceInputs.forEach(item => {
+                item.addEventListener('input', () => {
+                    const targetProfitValue = item.parentElement.parentElement.lastElementChild.lastElementChild;
+                    item.value = item.value.replace(/\D/, '');
+                    if (item.value) {
+                        targetProfitValue.innerText = (((+item.dataset.lotvalue - +item.value + +item.dataset.coupons) / +item.value) * (365 / +item.dataset.delta * 100)).toFixed(1) + ' %';
+                    }
+                });
+            });
 
-            // mouse event animation
+            // == mouse event animation ==
             const bonds = document.querySelectorAll('.wrapper-bond');
             bonds.forEach(item => {
                 item.lastElementChild.style.marginTop = `-${item.lastElementChild.clientHeight + 15}px`;
 
-                item.addEventListener('mouseenter', (e) => {
-                        e.target.lastElementChild.style.transition = `0.5s`;
-                        e.target.lastElementChild.style.marginTop = `0`;
+                item.addEventListener('mouseenter', () => {
+                    item.lastElementChild.style.transition = `0.5s`;
+                    item.lastElementChild.style.marginTop = `0`;
                 });
-                item.addEventListener('mouseleave', (e) => {
-                    e.target.lastElementChild.style.marginTop = `-${e.target.lastElementChild.clientHeight + 15}px`;
+                item.addEventListener('mouseleave', () => {
+                    item.lastElementChild.style.marginTop = `-${item.lastElementChild.clientHeight + 15}px`;
                 });
             });
         });
@@ -167,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // == risk selector buttons ==
     let switchCaseNum = 2;
     btnsRisk.forEach(item => {
-        item.addEventListener('click', e => {
+        item.addEventListener('click', (e) => {
             switchCaseNum = +e.target.value;
             getData(+e.target.value);
         });
