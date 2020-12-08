@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="stockbroker-price_wrapper">
                                 <div class="stockbroker-price_price">
                                     <p class="stockbroker-price_price-header">Введите цену облигации</p>
-                                    <input type="text" data-lotvalue="${bonds_arr[i].lotValue}" data-coupons="${bonds_arr[i].couponsSumValue - bonds_arr[i].accruedint}" data-delta="${((Date.parse(bonds_arr[i].matDate) - new Date()) / (1000 * 3600 * 24))}" class="stockbroker-price_price-input" name="stockbroker-price" placeholder="0 ₽"/>
+                                    <input type="text" data-lotvalue="${bonds_arr[i].lotValue}" data-coupons="${bonds_arr[i].couponsSumValue - bonds_arr[i].accruedint}" data-delta="${((Date.parse(bonds_arr[i].matDate) - new Date()) / (1000 * 3600 * 24))}" class="stockbroker-price_price-input" name="stockbroker-price" placeholder="0"/>
                                 </div>
                                 <div class="stockbroker-price_profit">
                                     <p class="stockbroker-price_price-header">Доходность к погашению</p>
