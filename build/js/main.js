@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
           container = document.querySelector('.container'),
           bondsWrapper = document.querySelector('.bonds__block');
 
-    let bonds_arr = [];
     // == get data from db function ==
     const getData = (caseNum) => {
         bondsWrapper.innerHTML = '';
@@ -16,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('./json.php')
         .then(response => response.json())
         .then(json => {
-            bonds_arr = [];
+            let bonds_arr = [];
             const numOfBonds = json.length;
 
             for (let i = 0; i < numOfBonds; i++) {
@@ -38,17 +37,56 @@ document.addEventListener('DOMContentLoaded', () => {
                     switch (caseNum) {
                         case 1:
                             if ((listLevel == 1) && (100 <= duration <= 330) && sumVolumeTradeValue >= 100) {
-                                bonds_arr.push([shortName, yieldToMatValue, purchase, secId, lotValue, sumVolumeTradeValue, duration, matDate, couponsSumValue, accruedint]);
+                                bonds_arr.push(
+                                    {
+                                        shortName: shortName,
+                                        yieldToMatValue: yieldToMatValue,
+                                        purchase: purchase,
+                                        secId: secId,
+                                        lotValue: lotValue,
+                                        sumVolumeTradeValue: sumVolumeTradeValue,
+                                        duration: duration,
+                                        matDate: matDate,
+                                        couponsSumValue: couponsSumValue,
+                                        accruedint: accruedint
+                                    }
+                                );
                             }
                             break;
                         case 2:
                             if ((listLevel <= 2) && (duration <= 660) && sumVolumeTradeValue >= 40) {
-                                bonds_arr.push([shortName, yieldToMatValue, purchase, secId, lotValue, sumVolumeTradeValue, duration, matDate, couponsSumValue, accruedint]);
+                                bonds_arr.push(
+                                    {
+                                        shortName: shortName,
+                                        yieldToMatValue: yieldToMatValue,
+                                        purchase: purchase,
+                                        secId: secId,
+                                        lotValue: lotValue,
+                                        sumVolumeTradeValue: sumVolumeTradeValue,
+                                        duration: duration,
+                                        matDate: matDate,
+                                        couponsSumValue: couponsSumValue,
+                                        accruedint: accruedint
+                                    }
+                                );
                             }
                             break;
                         case 3:
-                            if ((listLevel <= 3) && (duration <= 1000) && (0 <= duration)) {
-                                bonds_arr.push([shortName, yieldToMatValue, purchase, secId, lotValue, sumVolumeTradeValue, duration, matDate, couponsSumValue, accruedint]);
+                            if ((listLevel <= 3) && (0 <= duration <= 1000)) {
+                                bonds_arr.push(
+                                    {
+                                        shortName: shortName,
+                                        yieldToMatValue: yieldToMatValue,
+                                        purchase: purchase,
+                                        secId: secId,
+                                        lotValue: lotValue,
+                                        sumVolumeTradeValue: sumVolumeTradeValue,
+                                        duration: duration,
+                                        matDate: matDate,
+                                        couponsSumValue: couponsSumValue,
+                                        accruedint: accruedint
+                                    }
+                                );
                             }
                             break;
                     }
@@ -56,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             
             // == sort data by yieldToMatValue ==
-            bonds_arr.sort((a, b) => b[1] - a[1]);
+            bonds_arr.sort((a, b) => b.yieldToMatValue - a.yieldToMatValue);
 
             // == render ==
             if (bonds_arr[0]) {
@@ -71,46 +109,46 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="bond">
                             <div class="bonds__block-bond-data">
                                 <div class="bonds__block-bond-name">
-                                    <p class="bonds__block-bond-name_value">${bonds_arr[i][0]}</p>
+                                    <p class="bonds__block-bond-name_value">${bonds_arr[i].shortName}</p>
                                 </div>
                                 <div class="bonds__block-bond-profit">
                                     <p class="bonds__block-bond_header">Доходность до погашения</p>
-                                    <p class="bonds__block-bond-profit_value">${bonds_arr[i][1].toFixed(1)} %</p>
+                                    <p class="bonds__block-bond-profit_value">${Math.round((bonds_arr[i].yieldToMatValue) * 10) / 10} %</p>
                                 </div>
                                 <div class="bonds__block-col_adaptive">
                                     <div class="bonds__block-bond-other">
                                         <p class="bonds__block-bond_header">Дата погашения</p>
-                                        <p class="bonds__block-bond-other_value">${dateNormalizer(bonds_arr[i][7])}</p>
+                                        <p class="bonds__block-bond-other_value">${dateNormalizer(bonds_arr[i].matDate)}</p>
                                     </div>
                                     <div class="bonds__block-bond-other">
                                         <p class="bonds__block-bond_header">Цена за облигацию </p>
-                                        <p class="bonds__block-bond-other_value">${Math.round(bonds_arr[i][2])} ₽</p>
+                                        <p class="bonds__block-bond-other_value">${Math.round(bonds_arr[i].purchase)} ₽</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="bonds__block-bond-extra-data">
                                 <div class="bonds__block-bond-id">
                                     <p class="bonds__block-bond_header">ID облигации</p>
-                                    <p class="bonds__block-bond-name_value">${bonds_arr[i][3]}</p>
+                                    <p class="bonds__block-bond-name_value">${bonds_arr[i].secId}</p>
                                 </div>
                                 <div class="bonds__block-col_adaptive">
                                     <div class="bonds__block-bond-other">
                                         <p class="bonds__block-bond_header">Номинал</p>
-                                        <p class="bonds__block-bond-other_value">${bonds_arr[i][4]} ₽</p>
+                                        <p class="bonds__block-bond-other_value">${bonds_arr[i].lotValue} ₽</p>
                                     </div>
                                     <div class="bonds__block-bond-other">
                                         <p class="bonds__block-bond_header">Сделок за 30 дней</p>
-                                        <p class="bonds__block-bond-other_value">${bonds_arr[i][5]}</p>
+                                        <p class="bonds__block-bond-other_value">${bonds_arr[i].sumVolumeTradeValue}</p>
                                     </div>
                                 </div>
                                 <div class="bonds__block-col_adaptive">
                                     <div class="bonds__block-bond-other">
                                         <p class="bonds__block-bond_header">Средний годовой доход</p>
-                                        <p class="bonds__block-bond-other_value">${Math.round((bonds_arr[i][1] * bonds_arr[i][2])/100)} ₽</p>
+                                        <p class="bonds__block-bond-other_value">${Math.round((bonds_arr[i].yieldToMatValue * bonds_arr[i].purchase)/100)} ₽</p>
                                     </div>
                                     <div class="bonds__block-bond-other">
                                         <p class="bonds__block-bond_header">Дюрация, дней</p>
-                                        <p class="bonds__block-bond-other_value">${bonds_arr[i][6]}</p>
+                                        <p class="bonds__block-bond-other_value">${bonds_arr[i].duration}</p>
                                     </div>
                                 </div>
                             </div> 
@@ -120,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="stockbroker-price_wrapper">
                                 <div class="stockbroker-price_price">
                                     <p class="stockbroker-price_price-header">Введите цену облигации</p>
-                                    <input type="text" data-lotvalue="${bonds_arr[i][4]}" data-coupons="${bonds_arr[i][8] - bonds_arr[i][9]}" data-delta="${((Date.parse(bonds_arr[i][7]) - new Date()) / (1000 * 3600 * 24))}" class="stockbroker-price_price-input" name="stockbroker-price" placeholder="0 ₽"/>
+                                    <input type="text" data-lotvalue="${bonds_arr[i].lotValue}" data-coupons="${bonds_arr[i].couponsSumValue - bonds_arr[i].accruedint}" data-delta="${((Date.parse(bonds_arr[i].matDate) - new Date()) / (1000 * 3600 * 24))}" class="stockbroker-price_price-input" name="stockbroker-price" placeholder="0 ₽"/>
                                 </div>
                                 <div class="stockbroker-price_profit">
                                     <p class="stockbroker-price_price-header">Доходность к погашению</p>
