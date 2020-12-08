@@ -21,37 +21,32 @@ for ($i=0; $i < $counter_bonds; $i++) {
   $accruedint = $info['securities']['data'][$i][6];
   $prevwaprice = $info['securities']['data'][$i][4];
 
+  // display service info
   echo $i, " row<br>"; 
 
   if ($shortname!='' && $matdate!='' && $lotvalue <= 10000 && $duration <= 1000 && $listlevel!='' &&  $accruedint != '' && $prevwaprice != '' && $duration != 0 && $prevwaprice > 95) {
-    
-
+    // display service info
 		echo $i."  ";
 		echo $secid."   ";
 	    $counter_after_traps += 1;
-	    echo $counter_after_traps, " after traps<br>";
-
-
+      echo $counter_after_traps, " after traps<br>";
+      
+      // collect html data
 	    $html_text .= ", ('".get_html_coupons($secid)."')";
-
-//mysqli_real_escape_string($link, $shortname)
-
   }
 }
 $html_text = stristr($html_text, '(');
+// display service info
 echo $html_text;
+
+// upload data
 $query = "INSERT INTO `html` (`bond_html`) VALUES $html_text;";
     $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
     if($result) {
       echo " :) ";
     }
-    // закрываем подключение
+    // close link
     mysqli_close($link);
-
-//file_put_contents("html_coupons.php", json_encode($html_text, JSON_UNESCAPED_UNICODE));
-
-
-
 
 
 function get_html_coupons ($id) {
@@ -65,7 +60,7 @@ curl_setopt($curl, CURLOPT_HEADER, 1);
 curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($curl, CURLINFO_HTTP_CODE, 1);
 $result = curl_exec($curl);
-//Отлавливаем ошибки подключения
+// link errors
   if ($result === false) {
   echo "Ошибка CURL: " . curl_error($curl);
   } else {
@@ -74,7 +69,6 @@ $result = curl_exec($curl);
   $result = stristr($result, 'Календарь выплаты купонов');
   curl_close();
   return stristr($result, 'right_column bond', true);
-
 }
 
 ?>
