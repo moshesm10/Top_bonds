@@ -116,10 +116,6 @@ a.tooltip:hover span {
   background: #121212;
   color: #FFFFFF; }
 
-.disable {
-  background: #E5E5E5;
-  box-shadow: inset 5px 5px 10px #d0d0d0, inset -5px -5px 10px #ffffff; }
-
 .description {
   position: fixed;
   margin-top: 30px;
@@ -351,7 +347,6 @@ a.tooltip:hover span {
 .add {
   font-size: 14px;
   line-height: 150%;
-  /* identical to box height, or 21px */
   color: #777777;
   border-bottom: 1px solid #777777;
   cursor: pointer; }
@@ -406,6 +401,10 @@ a.tooltip:hover span {
     .popup__content-formula {
       margin-top: 20px;
       color: #777777; }
+
+.disable {
+  background: #E5E5E5;
+  box-shadow: inset 5px 5px 10px #d0d0d0, inset -5px -5px 10px #ffffff; }
 
 @-webkit-keyframes show {
   0% {

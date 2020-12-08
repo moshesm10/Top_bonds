@@ -148,12 +148,7 @@ a.tooltip:hover span {
 	color: #FFFFFF;
 }
 
-// == State ==
 
-.disable {
-	background: #E5E5E5;
-	box-shadow: inset 5px 5px 10px #d0d0d0, inset -5px -5px 10px #ffffff;
-}
 
 // == Description block ==
 
@@ -519,7 +514,6 @@ a.tooltip:hover span {
 .add {
 	font-size: 14px;
 	line-height: 150%;
-	/* identical to box height, or 21px */
 	color: #777777;
 	border-bottom: 1px solid #777777;
 	cursor: pointer;
@@ -581,6 +575,15 @@ a.tooltip:hover span {
         }
     }
 }
+
+// == State ==
+
+.disable {
+	background: #E5E5E5;
+	box-shadow: inset 5px 5px 10px #d0d0d0, inset -5px -5px 10px #ffffff;
+}
+
+// == Animate ==
 
 @keyframes show {
     0% {
