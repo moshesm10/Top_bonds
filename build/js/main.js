@@ -184,17 +184,30 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // == mouse event animation ==
+            // == mouse and touch event animation ==
             const bonds = document.querySelectorAll('.wrapper-bond');
-            bonds.forEach(item => {
-                item.lastElementChild.style.marginTop = `-${item.lastElementChild.clientHeight + 15}px`;
 
-                item.addEventListener('mouseenter', () => {
-                    item.lastElementChild.style.transition = `0.5s`;
-                    item.lastElementChild.style.marginTop = `0`;
-                });
-                item.addEventListener('mouseleave', () => {
-                    item.lastElementChild.style.marginTop = `-${item.lastElementChild.clientHeight + 15}px`;
+            const eventAnimationStyleStart = (element) => {
+                element.lastElementChild.style.transition = `0.5s`;
+                element.lastElementChild.style.marginTop = `0`;
+            };
+            const eventAnimationStyleEnd = (element) => {
+                element.lastElementChild.style.marginTop = `-${element.lastElementChild.clientHeight + 15}px`;
+            };
+
+            bonds.forEach(item => {
+                eventAnimationStyleEnd(item);
+
+                // mouse event
+                item.addEventListener('mouseenter', () => eventAnimationStyleStart(item));
+                item.addEventListener('mouseleave', () => eventAnimationStyleEnd(item));
+
+                // touch event
+                item.addEventListener('touchstart', () => {
+                    bonds.forEach(item => {
+                        eventAnimationStyleEnd(item)
+                    });
+                    eventAnimationStyleStart(item)
                 });
             });
         });
